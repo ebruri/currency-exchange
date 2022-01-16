@@ -6,7 +6,7 @@
 
 ## Github Pages Link
 
-[TITLE HERE Github Pages](https://ebruri.github.io/currency-exchange/)
+[Currency Exchange Github Pages](https://ebruri.github.io/currency-exchange/)
 
 ## Technologies Used
 
