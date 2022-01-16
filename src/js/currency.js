@@ -10,8 +10,4 @@ export default class CurrencyExchange {
       return error.message;
     }
   }
-  calculateCurrency(amount) {
-    const tl = amount * body.conversion_rates.try;
-    const eu = amount * body.conversion_rates.eur;
-  }
 }
