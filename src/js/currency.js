@@ -1,19 +1,15 @@
 export default class CurrencyExchange {  
-  static getCurrency() {
-    return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();
-      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
-      request.onload = function() {
-        if (this.status === 200) {
-          resolve(request.response);
-        } else {
-          reject(request.response);
-        }
+  static async getCurrency(currency) {
+    try {
+      const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${currency}`);
+      if (!response.ok) {
+        throw Error(response.statusText);
       }
-      request.open("GET", url, true);
-      request.send();
-    });
+      return response.json();
+    } catch(error) {
+      return error.message;
     }
+  }
   calculateCurrency(amount) {
     const tl = amount * body.conversion_rates.try;
     const eu = amount * body.conversion_rates.eur;
