@@ -2,24 +2,27 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import CurrencyExchange from './script.js';
+import CurrencyExchange from './js/currency.js';
 
 
-async function makeApiCall(currency) {
-  const response = await CurrencyExchange.getCurrency(currency);
+async function makeApiCall(currency1, currency2, amount) {
+  const response = await CurrencyExchange.getCurrency(currency1, currency2, amount);
   getElements(response);
 }
 
-function getElements(respone){
-
+function getElements(response){
+  if (response.result === "success") {
+    $(".converted").html(response.conversion_result);
+  } else {
+    $('.showError').text(`There was an error: ${response}`);
+  }
 }
 
 $(document).ready(function() {
   $('#convert').click(function() {
-    let amount = $('#money').val();
-    let currency = $('#currency').val();
-    makeApiCall(currency);
+    let currency1 = $('#currency1').val();
+    let currency2 = $('#currency2').val();
+    let amount = parseInt($('#amount').val());
+    makeApiCall(currency1, currency2, amount);
   });
 });
-
-
