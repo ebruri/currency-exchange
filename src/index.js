@@ -12,7 +12,7 @@ async function makeApiCall(currency1, currency2, amount) {
 
 function getElements(response){
   if (response.result === "success") {
-    $(".converted").html(response.conversion_result);
+    $(".converted").html(`The converted amount is = ${response.conversion_result}`);
   } else {
     $('.showError').text(`There was an error: ${response}`);
   }
